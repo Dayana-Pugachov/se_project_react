@@ -1,0 +1,30 @@
+.card {
+  height: 326px;
+  width: 323px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 19px;
+  display: flex;
+  position: relative;
+}
+
+.card:hover {
+  cursor: pointer;
+}
+
+.card__image {
+  border-radius: 19px;
+  height: 326px;
+  width: 323px;
+}
+
+.card__title {
+  position: absolute;
+  background-color: white;
+  padding: 2px 12px 2px 12px;
+  border-radius: 4px;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 15px 125px 287px;
+}

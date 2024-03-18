@@ -1,0 +1,28 @@
+.popup__container_type_preview {
+  max-width: 498px;
+  padding: 0;
+}
+
+.popup__item-image {
+  width: 498px;
+  height: 498px;
+  border-radius: 16px 16px 0 0;
+}
+
+.popup__close_type_preview {
+  background-image: url("../../images/close-transparent.svg");
+}
+
+.popup__item-description {
+  padding: 20px 32px 32px;
+  font-size: 20px;
+}
+
+.item-name {
+  margin: 0;
+  padding-bottom: 12px;
+}
+
+.item-weather {
+  margin: 0;
+}

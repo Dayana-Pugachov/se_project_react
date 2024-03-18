@@ -1,0 +1,8 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-width: 1360px;
+  width: 100%;
+  font-family: "Cabinet Grotesk", arial, sans-serif;
+}
