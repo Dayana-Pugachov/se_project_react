@@ -10,13 +10,13 @@ function Header({ onOpenPopup, location }) {
 
   return (
     <header className="header">
-      <div className="header__section">
+      <div className="header__section header__section_type_left">
         <img alt="WTWR-logo" src={logo} className="header__logo" />
         <p className="header__date-location">
           {currentDate}, {location}
         </p>
       </div>
-      <div className="header__section">
+      <div className="header__section header__section_type_right">
         <button
           className="header__button"
           id="add-clothes-btn"
@@ -28,6 +28,7 @@ function Header({ onOpenPopup, location }) {
         </button>
         <p className="header__user-name">Terrence Tegegne</p>
         <img alt="User avatar" src={avatar} className="header__avatar" />
+        <button className="hamburger"></button>
       </div>
     </header>
   );

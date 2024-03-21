@@ -13,3 +13,23 @@
   align-self: center;
   padding-left: 16px;
 }
+
+@media screen and (max-width: 580px) {
+  .weather-card {
+    /*the component*/
+    display: block;
+    margin-top: 16px;
+    height: 80px;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .weather-card__temp {
+    padding-top: 20px;
+  }
+
+  .weather-card__banner {
+    /*the image*/
+    object-position: right top;
+  }
+}

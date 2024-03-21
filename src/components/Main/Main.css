@@ -22,3 +22,13 @@
   margin: 0;
   padding: 0;
 }
+
+@media screen and (max-width: 580px) {
+  .content__title {
+    margin-top: 32px;
+  }
+
+  .content__gallery {
+    margin-top: 20px;
+  }
+}

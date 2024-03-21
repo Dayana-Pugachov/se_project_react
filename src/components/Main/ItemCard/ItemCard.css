@@ -28,3 +28,19 @@
   color: rgba(0, 0, 0, 0.6);
   margin: 15px 125px 287px;
 }
+
+@media screen and (max-width: 580px) {
+  .card {
+    height: 164px;
+    width: 164px;
+  }
+
+  .card__image {
+    height: 164px;
+    width: 164px;
+  }
+
+  .card__title {
+    margin: 0;
+  }
+}

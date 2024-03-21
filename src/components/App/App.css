@@ -6,3 +6,9 @@
   width: 100%;
   font-family: "Cabinet Grotesk", arial, sans-serif;
 }
+
+@media screen and (max-width: 580px) {
+  .app {
+    max-width: 343px;
+  }
+}

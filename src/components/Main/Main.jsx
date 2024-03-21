@@ -4,28 +4,17 @@ import "./Main.css";
 import WeatherCard from "./WeatherCard/WeatherCard";
 import ItemCard from "./ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
-import { useMemo } from "react";
 
-function Main({ handleCardClick, weatherTemp }) {
-  const weatherType = useMemo(() => {
-    if (weatherTemp >= 86) {
-      return "hot";
-    } else if (weatherTemp >= 66 && weatherTemp <= 85) {
-      return "warm";
-    } else if (weatherTemp <= 65) {
-      return "cold";
-    }
-  }, [weatherTemp]);
-
+function Main({ handleCardClick, weatherData }) {
   const filteredClothingItems = defaultClothingItems.filter((item) => {
-    return item.weather.toLowerCase() === weatherType;
+    return item.weather.toLowerCase() === weatherData.type; //HERE - weatherData.type
   });
 
   return (
     <main className="content">
-      <WeatherCard day={false} type="moon" weatherTemp={weatherTemp} />
+      <WeatherCard weatherData={weatherData} />
       <section className="content__title">
-        Today is {weatherTemp}°F / You may want to wear:
+        Today is {weatherData.temp}°F / You may want to wear:
       </section>
       <section className="content__gallery gallery">
         <ul className="gallery__list">

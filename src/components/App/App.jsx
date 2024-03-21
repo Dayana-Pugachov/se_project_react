@@ -5,14 +5,16 @@ import Footer from "../Footer/Footer";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import ItemPopup from "../ItemPopup/ItemPopup";
 import { useEffect, useState } from "react";
-import {
-  getCurrentForecast,
-  parseTempData,
-  parseLocationData,
-} from "../../utils/weatherApi";
+import { getCurrentForecast, parseForecastData } from "../../utils/weatherApi";
+import { coordinates, APIkey } from "../../utils/constants";
 
 function App() {
-  const [weatherTemp, setWeatherTemp] = useState(0);
+  const [weatherData, setWeatherData] = useState({
+    type: "",
+    temp: 0,
+    isDay: true,
+    condition: "",
+  });
   const [location, setLocation] = useState("");
   const [activePopup, setActivePopup] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
@@ -53,19 +55,14 @@ function App() {
     return () => document.removeEventListener("click", handleClickOff);
   }, []);
 
-  //side effect of retrieving the weather from api
+  //side effect of retrieving weather && location from api
   useEffect(() => {
-    getCurrentForecast().then((data) => {
-      const tempData = parseTempData(data);
-      setWeatherTemp(tempData);
-    });
-  }, []);
-
-  //side effect of retrieving the location from api
-  useEffect(() => {
-    getCurrentForecast().then((data) => {
-      const locationData = parseLocationData(data);
-      setLocation(locationData);
+    getCurrentForecast(coordinates, APIkey).then((data) => {
+      console.log(data);
+      const parsedData = parseForecastData(data);
+      console.log(parsedData);
+      setWeatherData(parsedData);
+      setLocation(parsedData.location);
     });
   }, []);
 
@@ -75,7 +72,7 @@ function App() {
         onOpenPopup={() => handleOpenPopup("add-popup")}
         location={location}
       />
-      <Main handleCardClick={handleCardClick} weatherTemp={weatherTemp} />
+      <Main handleCardClick={handleCardClick} weatherData={weatherData} />
       <Footer />
       {activePopup === "add-popup" && (
         <PopupWithForm
