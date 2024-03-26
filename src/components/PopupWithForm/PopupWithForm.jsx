@@ -1,13 +1,20 @@
 import "./PopupWithForm.css";
+import { useState } from "react";
 
-function PopupWithForm({ title, name, buttonText, children, onClosePopup }) {
-  /*function handleClose() {
-    const popupElement = document.querySelector(".popup");
-    popupElement.classList.remove("popup_open");
-  }*/
-
+function PopupWithForm({
+  title,
+  name,
+  buttonText,
+  children,
+  onClosePopup,
+  isAddPopupVisible,
+}) {
   return (
-    <div className={`popup popup_type_${name}`}>
+    <div
+      className={`popup popup_type_${name} ${
+        isAddPopupVisible ? "popup_active" : ""
+      }`}
+    >
       <div className="popup__container">
         <p className="popup__title">{title}</p>
         <button

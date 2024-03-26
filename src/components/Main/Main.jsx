@@ -28,6 +28,9 @@ function Main({ handleCardClick, weatherData }) {
             );
           })}
         </ul>
+        <button className="content__button_type_randomize" id="randomize-btn">
+          Randomize
+        </button>
       </section>
     </main>
   );

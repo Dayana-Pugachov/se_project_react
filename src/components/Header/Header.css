@@ -7,7 +7,7 @@
   line-height: 24px;
 }
 
-.header__section {
+.header__container {
   display: flex;
   align-items: center;
 }
@@ -50,23 +50,53 @@
   margin-left: 12px;
 }
 
+/*Mobile features*/
 .hamburger {
+  display: none;
   position: relative;
+  background: transparent url("../../images/mobile-design/hamburger.svg") center
+    no-repeat;
+  background-color: white;
   height: 44px;
   width: 44px;
   border: none;
   border-radius: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
   padding: 0;
 }
 
+.mobile-menu_open {
+  position: absolute;
+  background-color: white;
+  border-radius: 10px;
+  height: 208px;
+  max-width: 343px;
+  width: 100%;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.mobile-menu__close-btn {
+  display: none;
+  position: absolute;
+  border: none;
+  background: transparent url("../../images/mobile-design/black-x.svg")
+    no-repeat;
+  height: 21.21px;
+  width: 21.41px;
+  top: 11px;
+  right: 11.39px;
+}
+
 @media screen and (max-width: 580px) {
-  .header__section_type_left {
+  .header__container_type_logo {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .header__section_type_right {
-    align-items: flex-start;
+  /*the interactive options of the header menu*/
+  .header__container_type_options {
+    display: none;
   }
 
   .header__logo {
@@ -79,14 +109,29 @@
   }
 
   .header__button {
-    display: none;
+    position: absolute;
+    left: 111px;
+    bottom: 60px;
   }
 
   .header__user-name {
-    display: none;
+    position: absolute;
+    margin: 0;
+    top: 68px;
+    left: 67px;
   }
 
   .header__avatar {
-    display: none;
+    position: absolute;
+    top: 60px;
+    right: 67px;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .mobile-menu__close-btn {
+    display: flex;
   }
 }

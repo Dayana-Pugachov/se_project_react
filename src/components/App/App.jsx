@@ -18,10 +18,24 @@ function App() {
   const [location, setLocation] = useState("");
   const [activePopup, setActivePopup] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
+  const [isAddPopupVisible, setIsAddPopupVisible] = useState(false);
 
   //"add-popup" or "preview"
   function handleOpenPopup(popup) {
-    setActivePopup(popup);
+    if (popup === "add-popup") {
+      setActivePopup(popup);
+      toggleAddPopupVisibility();
+    } else {
+      setActivePopup(popup);
+    }
+  }
+
+  function toggleAddPopupVisibility() {
+    if (isAddPopupVisible) {
+      setIsAddPopupVisible(false);
+    } else {
+      setIsAddPopupVisible(true);
+    }
   }
 
   function handleClosePopup() {
@@ -80,6 +94,7 @@ function App() {
           name="form"
           buttonText="Add garment"
           onClosePopup={handleClosePopup}
+          isAddPopupVisible={isAddPopupVisible}
         >
           <fieldset className="form__fieldset">
             <label className="form__label form__label_type_text" for="name">

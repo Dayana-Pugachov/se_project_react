@@ -117,3 +117,38 @@
   font-weight: 700;
   padding: 8px 16px 8px 16px;
 }
+
+@media screen and (max-width: 580px) {
+  .popup {
+    align-items: end;
+    bottom: -447px;
+    transition: bottom 0.5s ease;
+  }
+
+  .popup_active {
+    bottom: 0;
+    transition: bottom 0.5s ease;
+  }
+
+  .popup__container {
+    padding: 32px 16px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .popup__title {
+    font-size: 20px;
+    margin-bottom: 37px;
+  }
+
+  .popup__close {
+    background-image: url("../../images/mobile-design/black-x.svg");
+    height: 21.21px;
+    width: 21.41px;
+    top: 20px;
+    right: 20.79px;
+  }
+
+  .form__button {
+    max-width: 343px;
+  }
+}

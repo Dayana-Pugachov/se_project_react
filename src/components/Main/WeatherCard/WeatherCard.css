@@ -16,20 +16,15 @@
 
 @media screen and (max-width: 580px) {
   .weather-card {
-    /*the component*/
-    display: block;
     margin-top: 16px;
     height: 80px;
     overflow: hidden;
     border-radius: 12px;
   }
 
-  .weather-card__temp {
-    padding-top: 20px;
-  }
-
   .weather-card__banner {
-    /*the image*/
-    object-position: right top;
+    position: absolute;
+    right: 0.1px;
+    z-index: -1;
   }
 }

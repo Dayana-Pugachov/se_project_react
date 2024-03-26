@@ -10,3 +10,9 @@
 .footer__text {
   margin: 0;
 }
+
+@media screen and (max-width: 580px) {
+  .footer {
+    width: 100%;
+  }
+}

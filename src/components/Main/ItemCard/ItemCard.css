@@ -5,6 +5,7 @@
   border-radius: 19px;
   display: flex;
   position: relative;
+  justify-content: center;
 }
 
 .card:hover {
@@ -18,6 +19,7 @@
 }
 
 .card__title {
+  display: flex;
   position: absolute;
   background-color: white;
   padding: 2px 12px 2px 12px;
@@ -26,21 +28,22 @@
   text-align: center;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.6);
-  margin: 15px 125px 287px;
+  top: 15px;
+  margin: 0;
 }
 
 @media screen and (max-width: 580px) {
   .card {
-    height: 164px;
-    width: 164px;
+    height: 162px;
+    width: 162px;
   }
 
   .card__image {
-    height: 164px;
-    width: 164px;
+    height: 162px;
+    width: 162px;
   }
 
   .card__title {
-    margin: 0;
+    top: 7px;
   }
 }

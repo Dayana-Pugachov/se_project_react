@@ -10,6 +10,9 @@
 }
 
 .popup__close_type_preview {
+  position: absolute;
+  top: 24px;
+  right: 24px;
   background-image: url("../../images/close-transparent.svg");
 }
 
@@ -25,4 +28,23 @@
 
 .item-weather {
   margin: 0;
+}
+
+@media screen and (max-width: 580px) {
+  .popup__container_type_preview {
+    max-width: 343px;
+  }
+
+  .popup__item-image {
+    width: 343px;
+    height: 343px;
+  }
+
+  .popup__close_type_preview {
+    background-image: url("../../images/mobile-design/black-x.svg");
+    height: 21.21px;
+    width: 21.41px;
+    top: 12px;
+    right: 12.79px;
+  }
 }
