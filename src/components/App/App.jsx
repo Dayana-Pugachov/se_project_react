@@ -19,12 +19,22 @@ function App() {
   const [activePopup, setActivePopup] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [isAddPopupVisible, setIsAddPopupVisible] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  function toggleMobileMenu() {
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    } else {
+      setIsMobileMenuOpen(true);
+    }
+  }
 
   //"add-popup" or "preview"
   function handleOpenPopup(popup) {
     if (popup === "add-popup") {
       setActivePopup(popup);
       toggleAddPopupVisibility();
+      toggleMobileMenu();
     } else {
       setActivePopup(popup);
     }
@@ -38,8 +48,13 @@ function App() {
     }
   }
 
-  function handleClosePopup() {
-    setActivePopup("");
+  function handleClosePopup(popup) {
+    if (popup === "add-popup") {
+      setActivePopup("");
+      toggleAddPopupVisibility();
+    } else {
+      setActivePopup("");
+    }
   }
 
   function handleCardClick(card) {
@@ -50,6 +65,7 @@ function App() {
   //side effect of handleEsc
   useEffect(() => {
     const handleEsc = (event) => {
+      console.log(event);
       if (event.key === "Escape") {
         handleClosePopup();
       }
@@ -85,6 +101,8 @@ function App() {
       <Header
         onOpenPopup={() => handleOpenPopup("add-popup")}
         location={location}
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
       />
       <Main handleCardClick={handleCardClick} weatherData={weatherData} />
       <Footer />
@@ -93,7 +111,7 @@ function App() {
           title="New garment"
           name="form"
           buttonText="Add garment"
-          onClosePopup={handleClosePopup}
+          onClosePopup={() => handleClosePopup("add-popup")}
           isAddPopupVisible={isAddPopupVisible}
         >
           <fieldset className="form__fieldset">
@@ -168,7 +186,7 @@ function App() {
         <ItemPopup
           name="preview"
           card={selectedCard}
-          onClosePopup={handleClosePopup}
+          onClosePopup={() => handleClosePopup("preview")}
         />
       )}
     </div>

@@ -3,21 +3,11 @@ import avatar from "../../images/avatar.svg";
 import "./Header.css";
 import { useState } from "react";
 
-function Header({ onOpenPopup, location }) {
+function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  function toggleMobileMenu() {
-    if (isMobileMenuOpen) {
-      setIsMobileMenuOpen(false);
-    } else {
-      setIsMobileMenuOpen(true);
-    }
-  }
 
   return (
     <header className="header">
