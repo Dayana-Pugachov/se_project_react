@@ -8,6 +8,11 @@
   left: 0;
   align-items: center;
   justify-content: center;
+  visibility: hidden;
+}
+
+.popup_opened {
+  visibility: visible;
 }
 
 .popup__container {

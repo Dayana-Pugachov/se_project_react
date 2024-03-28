@@ -21,14 +21,6 @@ function App() {
   const [isAddPopupVisible, setIsAddPopupVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  function toggleMobileMenu() {
-    if (isMobileMenuOpen) {
-      setIsMobileMenuOpen(false);
-    } else {
-      setIsMobileMenuOpen(true);
-    }
-  }
-
   //"add-popup" or "preview"
   function handleOpenPopup(popup) {
     if (popup === "add-popup") {
@@ -37,6 +29,14 @@ function App() {
       toggleMobileMenu();
     } else {
       setActivePopup(popup);
+    }
+  }
+
+  function toggleMobileMenu() {
+    if (isMobileMenuOpen) {
+      setIsMobileMenuOpen(false);
+    } else {
+      setIsMobileMenuOpen(true);
     }
   }
 
@@ -106,82 +106,81 @@ function App() {
       />
       <Main handleCardClick={handleCardClick} weatherData={weatherData} />
       <Footer />
-      {activePopup === "add-popup" && (
-        <PopupWithForm
-          title="New garment"
-          name="form"
-          buttonText="Add garment"
-          onClosePopup={() => handleClosePopup("add-popup")}
-          isAddPopupVisible={isAddPopupVisible}
-        >
-          <fieldset className="form__fieldset">
-            <label className="form__label form__label_type_text" for="name">
-              Name
-            </label>
-            <input
-              className="form__input"
-              id="name"
-              name="name"
-              placeholder="Name"
-              type="text"
-              required
-              minLength="1"
-              maxLength="30"
-            ></input>
+      <PopupWithForm
+        title="New garment"
+        name="form"
+        buttonText="Add garment"
+        onClosePopup={() => handleClosePopup("add-popup")}
+        isAddPopupVisible={isAddPopupVisible}
+        isOpen={activePopup === "add-popup"}
+      >
+        <fieldset className="form__fieldset">
+          <label className="form__label form__label_type_text" for="name">
+            Name
+          </label>
+          <input
+            className="form__input"
+            id="name"
+            name="name"
+            placeholder="Name"
+            type="text"
+            required
+            minLength="1"
+            maxLength="30"
+          ></input>
 
-            <label className="form__label form__label_type_text" for="link">
-              Image
-            </label>
+          <label className="form__label form__label_type_text" for="link">
+            Image
+          </label>
+          <input
+            className="form__input"
+            id="link"
+            name="link"
+            placeholder="Image URL"
+            type="url"
+            required
+          ></input>
+        </fieldset>
+        <p className="fieldset__text">Select the weather type:</p>
+        <fieldset className="form__fieldset">
+          <div className="label-wrapper">
             <input
               className="form__input"
-              id="link"
-              name="link"
-              placeholder="Image URL"
-              type="url"
-              required
+              id="hot"
+              type="radio"
+              name="weather"
+              value="hot"
             ></input>
-          </fieldset>
-          <p className="fieldset__text">Select the weather type:</p>
-          <fieldset className="form__fieldset">
-            <div className="label-wrapper">
-              <input
-                className="form__input"
-                id="hot"
-                type="radio"
-                name="weather"
-                value="hot"
-              ></input>
-              <label className="form__label form__label_type_radio" for="hot">
-                Hot
-              </label>
-            </div>
-            <div className="label-wrapper">
-              <input
-                className="form__input"
-                id="warm"
-                type="radio"
-                name="weather"
-                value="warm"
-              ></input>
-              <label className="form__label form__label_type_radio" for="warm">
-                Warm
-              </label>
-            </div>
-            <div className="label-wrapper">
-              <input
-                className="form__input"
-                id="cold"
-                type="radio"
-                name="weather"
-                value="cold"
-              ></input>
-              <label className="form__label form__label_type_radio" for="cold">
-                Cold
-              </label>
-            </div>
-          </fieldset>
-        </PopupWithForm>
-      )}
+            <label className="form__label form__label_type_radio" for="hot">
+              Hot
+            </label>
+          </div>
+          <div className="label-wrapper">
+            <input
+              className="form__input"
+              id="warm"
+              type="radio"
+              name="weather"
+              value="warm"
+            ></input>
+            <label className="form__label form__label_type_radio" for="warm">
+              Warm
+            </label>
+          </div>
+          <div className="label-wrapper">
+            <input
+              className="form__input"
+              id="cold"
+              type="radio"
+              name="weather"
+              value="cold"
+            ></input>
+            <label className="form__label form__label_type_radio" for="cold">
+              Cold
+            </label>
+          </div>
+        </fieldset>
+      </PopupWithForm>
       {activePopup === "preview" && (
         <ItemPopup
           name="preview"

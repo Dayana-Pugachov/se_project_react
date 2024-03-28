@@ -1,0 +1,13 @@
+//trying to unite the toggle functionality
+
+/*const [isElementVisible, setIsElementVisible] = useState({
+    addPopupElement: false,
+    mobileMenuElement: false,
+  });
+  function toggleElementVisibility(elementKey) {
+    if (isElementVisible) {
+      setIsElementVisible(false);
+    } else {
+      setIsElementVisible(true);
+    }
+  }*/

@@ -96,7 +96,7 @@
 
   /*the interactive options of the header menu*/
   .header__container_type_options {
-    display: none;
+    visibility: hidden;
   }
 
   .header__logo {

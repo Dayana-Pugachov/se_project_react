@@ -8,10 +8,11 @@ function PopupWithForm({
   children,
   onClosePopup,
   isAddPopupVisible,
+  isOpen,
 }) {
   return (
     <div
-      className={`popup popup_type_${name} ${
+      className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""} ${
         isAddPopupVisible ? "popup_active" : ""
       }`}
     >
