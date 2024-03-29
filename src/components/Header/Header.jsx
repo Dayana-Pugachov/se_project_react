@@ -1,7 +1,6 @@
 import logo from "../../images/logo.svg";
 import avatar from "../../images/avatar.svg";
 import "./Header.css";
-import { useState } from "react";
 
 function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
   const currentDate = new Date().toLocaleString("default", {
@@ -45,6 +44,7 @@ function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
         className="hamburger"
         type="button"
         onClick={toggleMobileMenu}
+        aria-label="Mobile menu"
       ></button>
     </header>
   );

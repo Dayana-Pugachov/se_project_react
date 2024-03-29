@@ -25,8 +25,8 @@ function App() {
   function handleOpenPopup(popup) {
     if (popup === "add-popup") {
       setActivePopup(popup);
-      toggleAddPopupVisibility();
-      toggleMobileMenu();
+      setIsAddPopupVisible(true);
+      setIsMobileMenuOpen(false);
     } else {
       setActivePopup(popup);
     }
@@ -67,7 +67,7 @@ function App() {
     const handleEsc = (event) => {
       console.log(event);
       if (event.key === "Escape") {
-        handleClosePopup();
+        handleClosePopup(); //how to pass the relevant popup
       }
     };
     document.addEventListener("keydown", handleEsc);
@@ -78,7 +78,7 @@ function App() {
   useEffect(() => {
     const handleClickOff = (event) => {
       if (event.target.classList.contains("popup")) {
-        handleClosePopup();
+        handleClosePopup(); //how to pass the relevant popup
       }
     };
     document.addEventListener("click", handleClickOff);
@@ -181,13 +181,12 @@ function App() {
           </div>
         </fieldset>
       </PopupWithForm>
-      {activePopup === "preview" && (
-        <ItemPopup
-          name="preview"
-          card={selectedCard}
-          onClosePopup={() => handleClosePopup("preview")}
-        />
-      )}
+      <ItemPopup
+        name="preview"
+        card={selectedCard}
+        onClosePopup={() => handleClosePopup("preview")}
+        isOpen={activePopup === "preview"}
+      />
     </div>
   );
 }

@@ -4,11 +4,34 @@ import "./Main.css";
 import WeatherCard from "./WeatherCard/WeatherCard";
 import ItemCard from "./ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
+import { useEffect } from "react";
 
 function Main({ handleCardClick, weatherData }) {
-  const filteredClothingItems = defaultClothingItems.filter((item) => {
-    return item.weather.toLowerCase() === weatherData.type; //HERE - weatherData.type
+  let filteredClothingItems = defaultClothingItems.filter((item) => {
+    return item.weather.toLowerCase() === weatherData.type;
   });
+
+  useEffect(() => {
+    const randomizeButton = document.querySelector("#randomize-btn");
+
+    function randomizeItems(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+      console.log(array);
+    }
+    randomizeButton.addEventListener(
+      "click",
+      randomizeItems(filteredClothingItems)
+    );
+    return () =>
+      randomizeButton.removeEventListener(
+        "click",
+        randomizeItems(filteredClothingItems)
+      );
+  }, []);
 
   return (
     <main className="content">

@@ -1,8 +1,8 @@
 import "./ItemPopup.css";
 
-function ItemPopup({ name, card, onClosePopup }) {
+function ItemPopup({ name, card, onClosePopup, isOpen }) {
   return (
-    <div className={`popup popup_type_${name}`}>
+    <div className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container popup__container_type_preview">
         <img
           className="popup__item-image"
