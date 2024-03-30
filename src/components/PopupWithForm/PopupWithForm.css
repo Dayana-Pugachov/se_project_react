@@ -127,12 +127,12 @@
   .popup_type_form {
     align-items: end;
     bottom: -447px;
-    transition: bottom 0.5s ease;
+    transition: visibility 0s ease 0.5s, bottom 0.5s ease;
   }
 
-  .popup_active {
+  .popup_opened {
     bottom: 0;
-    transition: bottom 0.5s ease;
+    transition-delay: 0s;
   }
 
   .popup__container {

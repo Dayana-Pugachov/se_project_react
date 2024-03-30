@@ -4,34 +4,26 @@ import "./Main.css";
 import WeatherCard from "./WeatherCard/WeatherCard";
 import ItemCard from "./ItemCard/ItemCard";
 import { defaultClothingItems } from "../../utils/constants";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function Main({ handleCardClick, weatherData }) {
-  let filteredClothingItems = defaultClothingItems.filter((item) => {
-    return item.weather.toLowerCase() === weatherData.type;
-  });
+  const [filteredItems, setFilteredItems] = useState([]);
 
   useEffect(() => {
-    const randomizeButton = document.querySelector("#randomize-btn");
+    const filtered = defaultClothingItems.filter((item) => {
+      return item.weather.toLowerCase() === weatherData.type;
+    });
+    setFilteredItems(filtered);
+  }, [weatherData.type]);
 
-    function randomizeItems(array) {
-      for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      }
-      return array;
-      console.log(array);
+  function randomizeItems() {
+    const randomized = [...filteredItems];
+    for (let i = randomized.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [randomized[i], randomized[j]] = [randomized[j], randomized[i]];
     }
-    randomizeButton.addEventListener(
-      "click",
-      randomizeItems(filteredClothingItems)
-    );
-    return () =>
-      randomizeButton.removeEventListener(
-        "click",
-        randomizeItems(filteredClothingItems)
-      );
-  }, []);
+    setFilteredItems(randomized);
+  }
 
   return (
     <main className="content">
@@ -41,7 +33,7 @@ function Main({ handleCardClick, weatherData }) {
       </section>
       <section className="content__gallery gallery">
         <ul className="gallery__list">
-          {filteredClothingItems.map((item) => {
+          {filteredItems.map((item) => {
             return (
               <ItemCard
                 item={item}
@@ -51,7 +43,13 @@ function Main({ handleCardClick, weatherData }) {
             );
           })}
         </ul>
-        <button className="content__button_type_randomize" id="randomize-btn">
+        <button
+          className="content__button_type_randomize"
+          id="randomize-btn"
+          type="button"
+          aria-label="Randomize items"
+          onClick={randomizeItems}
+        >
           Randomize
         </button>
       </section>

@@ -1,5 +1,4 @@
 import "./PopupWithForm.css";
-import { useState } from "react";
 
 function PopupWithForm({
   title,
@@ -7,15 +6,10 @@ function PopupWithForm({
   buttonText,
   children,
   onClosePopup,
-  isAddPopupVisible,
   isOpen,
 }) {
   return (
-    <div
-      className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""} ${
-        isAddPopupVisible ? "popup_active" : ""
-      }`}
-    >
+    <div className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`}>
       <div className="popup__container">
         <p className="popup__title">{title}</p>
         <button

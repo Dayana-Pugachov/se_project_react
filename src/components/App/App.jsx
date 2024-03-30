@@ -40,21 +40,8 @@ function App() {
     }
   }
 
-  function toggleAddPopupVisibility() {
-    if (isAddPopupVisible) {
-      setIsAddPopupVisible(false);
-    } else {
-      setIsAddPopupVisible(true);
-    }
-  }
-
-  function handleClosePopup(popup) {
-    if (popup === "add-popup") {
-      setActivePopup("");
-      toggleAddPopupVisibility();
-    } else {
-      setActivePopup("");
-    }
+  function handleClosePopup() {
+    setActivePopup("");
   }
 
   function handleCardClick(card) {
@@ -65,9 +52,8 @@ function App() {
   //side effect of handleEsc
   useEffect(() => {
     const handleEsc = (event) => {
-      console.log(event);
       if (event.key === "Escape") {
-        handleClosePopup(); //how to pass the relevant popup
+        handleClosePopup();
       }
     };
     document.addEventListener("keydown", handleEsc);
@@ -78,7 +64,7 @@ function App() {
   useEffect(() => {
     const handleClickOff = (event) => {
       if (event.target.classList.contains("popup")) {
-        handleClosePopup(); //how to pass the relevant popup
+        handleClosePopup();
       }
     };
     document.addEventListener("click", handleClickOff);
@@ -88,9 +74,8 @@ function App() {
   //side effect of retrieving weather && location from api
   useEffect(() => {
     getCurrentForecast(coordinates, APIkey).then((data) => {
-      console.log(data);
       const parsedData = parseForecastData(data);
-      console.log(parsedData);
+
       setWeatherData(parsedData);
       setLocation(parsedData.location);
     });
@@ -110,12 +95,11 @@ function App() {
         title="New garment"
         name="form"
         buttonText="Add garment"
-        onClosePopup={() => handleClosePopup("add-popup")}
-        isAddPopupVisible={isAddPopupVisible}
+        onClosePopup={handleClosePopup}
         isOpen={activePopup === "add-popup"}
       >
         <fieldset className="form__fieldset">
-          <label className="form__label form__label_type_text" for="name">
+          <label className="form__label form__label_type_text" htmlFor="name">
             Name
           </label>
           <input
@@ -129,7 +113,7 @@ function App() {
             maxLength="30"
           ></input>
 
-          <label className="form__label form__label_type_text" for="link">
+          <label className="form__label form__label_type_text" htmlFor="link">
             Image
           </label>
           <input
@@ -151,7 +135,7 @@ function App() {
               name="weather"
               value="hot"
             ></input>
-            <label className="form__label form__label_type_radio" for="hot">
+            <label className="form__label form__label_type_radio" htmlFor="hot">
               Hot
             </label>
           </div>
@@ -163,7 +147,10 @@ function App() {
               name="weather"
               value="warm"
             ></input>
-            <label className="form__label form__label_type_radio" for="warm">
+            <label
+              className="form__label form__label_type_radio"
+              htmlFor="warm"
+            >
               Warm
             </label>
           </div>
@@ -175,7 +162,10 @@ function App() {
               name="weather"
               value="cold"
             ></input>
-            <label className="form__label form__label_type_radio" for="cold">
+            <label
+              className="form__label form__label_type_radio"
+              htmlFor="cold"
+            >
               Cold
             </label>
           </div>
@@ -184,7 +174,7 @@ function App() {
       <ItemPopup
         name="preview"
         card={selectedCard}
-        onClosePopup={() => handleClosePopup("preview")}
+        onClosePopup={handleClosePopup}
         isOpen={activePopup === "preview"}
       />
     </div>

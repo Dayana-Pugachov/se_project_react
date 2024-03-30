@@ -118,7 +118,6 @@ export const defaultClothingItems = [
   },
 ];
 
-//Petah Tikva, Israel
 export const coordinates = {
   longitude: 37.617664,
   latitude: 55.752121,
