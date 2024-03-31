@@ -17,7 +17,7 @@ function PopupWithForm({
           alt="close"
           type="button"
           onClick={onClosePopup}
-        ></button>
+        />
         <form className="form popup__form">
           {children}
           <button type="submit" className="form__button">

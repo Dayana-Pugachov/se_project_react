@@ -33,11 +33,7 @@ function App() {
   }
 
   function toggleMobileMenu() {
-    if (isMobileMenuOpen) {
-      setIsMobileMenuOpen(false);
-    } else {
-      setIsMobileMenuOpen(true);
-    }
+    setIsMobileMenuOpen((state) => !state);
   }
 
   function handleClosePopup() {
@@ -57,8 +53,9 @@ function App() {
       }
     };
     document.addEventListener("keydown", handleEsc);
-    return () => document.removeEventListener("keydown", handleEsc);
-  }, []);
+    if (!activePopup)
+      return () => document.removeEventListener("keydown", handleEsc);
+  }, [activePopup]);
 
   //side effect of handleClickOff
   useEffect(() => {
@@ -68,17 +65,19 @@ function App() {
       }
     };
     document.addEventListener("click", handleClickOff);
-    return () => document.removeEventListener("click", handleClickOff);
-  }, []);
+    if (!activePopup)
+      return () => document.removeEventListener("click", handleClickOff);
+  }, [activePopup]);
 
   //side effect of retrieving weather && location from api
   useEffect(() => {
-    getCurrentForecast(coordinates, APIkey).then((data) => {
-      const parsedData = parseForecastData(data);
-
-      setWeatherData(parsedData);
-      setLocation(parsedData.location);
-    });
+    getCurrentForecast(coordinates, APIkey)
+      .then((data) => {
+        const parsedData = parseForecastData(data);
+        setWeatherData(parsedData);
+        setLocation(parsedData.location);
+      })
+      .catch(console.error);
   }, []);
 
   return (

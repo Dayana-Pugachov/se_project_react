@@ -27,7 +27,7 @@ function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
           className="mobile-menu__close-btn"
           type="button"
           onClick={toggleMobileMenu}
-        ></button>
+        />
         <button
           className="header__button"
           id="add-clothes-btn"
@@ -45,7 +45,7 @@ function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
         type="button"
         onClick={toggleMobileMenu}
         aria-label="Mobile menu"
-      ></button>
+      />
     </header>
   );
 }

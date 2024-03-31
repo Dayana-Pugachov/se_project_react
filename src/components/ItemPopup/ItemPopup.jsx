@@ -14,7 +14,7 @@ function ItemPopup({ name, card, onClosePopup, isOpen }) {
           type="button"
           alt="close"
           onClick={onClosePopup}
-        ></button>
+        />
         <div className="popup__item-description">
           <p className="item-name">{card.name}</p>
           <p className="item-weather">Weather: {card.weather}</p>
