@@ -47,26 +47,26 @@ function App() {
 
   //side effect of handleEsc
   useEffect(() => {
+    if (!activePopup) return;
     const handleEsc = (event) => {
       if (event.key === "Escape") {
         handleClosePopup();
       }
     };
     document.addEventListener("keydown", handleEsc);
-    if (!activePopup)
-      return () => document.removeEventListener("keydown", handleEsc);
+    return () => document.removeEventListener("keydown", handleEsc);
   }, [activePopup]);
 
   //side effect of handleClickOff
   useEffect(() => {
+    if (!activePopup) return;
     const handleClickOff = (event) => {
       if (event.target.classList.contains("popup")) {
         handleClosePopup();
       }
     };
     document.addEventListener("click", handleClickOff);
-    if (!activePopup)
-      return () => document.removeEventListener("click", handleClickOff);
+    return () => document.removeEventListener("click", handleClickOff);
   }, [activePopup]);
 
   //side effect of retrieving weather && location from api
