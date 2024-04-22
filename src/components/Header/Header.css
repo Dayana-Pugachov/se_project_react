@@ -15,6 +15,12 @@
 .header__logo {
   max-width: 89px;
   height: 40px;
+  transition: all 0.2s linear;
+}
+
+.header__logo:hover {
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .header__date-location {
@@ -30,6 +36,7 @@
   font-family: "Cabinet Grotesk", arial, sans-serif;
   font-size: 20px;
   font-weight: 700;
+  margin-left: 20px;
 }
 
 .header__button {
@@ -41,13 +48,23 @@
 }
 
 .header__user-name {
+  color: black;
+  text-decoration: none;
   margin: 0 0 0 20px;
+}
+
+.header__user-name:hover {
+  cursor: pointer;
 }
 
 .header__avatar {
   width: 40px;
   height: 40px;
   margin-left: 12px;
+}
+
+.header__avatar:hover {
+  cursor: pointer;
 }
 
 /*Mobile features*/

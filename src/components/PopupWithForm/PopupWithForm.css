@@ -26,10 +26,14 @@
   font-size: 16px;
   font-weight: 700;
   background-color: white;
-  max-width: 440px;
+
   width: 100%;
   border-radius: 20px;
   padding: 28px 28px 36px;
+}
+
+.popup__container_type_form {
+  max-width: 440px;
 }
 
 .popup__title {
@@ -47,10 +51,12 @@
   width: 20px;
   top: 20px;
   right: 28px;
+  transition: all 0.2s ease;
 }
 
 .popup__close:hover {
   cursor: pointer;
+  transform: rotate(90deg);
 }
 
 .form {
@@ -115,16 +121,25 @@
   margin-bottom: 32px;
 }
 
-.form__button {
+.form__submit {
   max-width: 124px;
   border: none;
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: black;
   color: white;
   font-family: "Cabinet Grotesk", arial, sans-serif;
   font-size: 16px;
   font-weight: 700;
   padding: 8px 16px 8px 16px;
+}
+
+.form__submit:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.form__submit_disabled {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 580px) {

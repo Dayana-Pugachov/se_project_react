@@ -18,17 +18,41 @@
 }
 
 .popup__item-description {
+  display: grid;
+  grid-template-areas:
+    "name delete"
+    "weather .";
   padding: 20px 32px 32px;
   font-size: 20px;
 }
 
 .item-name {
+  grid-area: name;
   margin: 0;
   padding-bottom: 12px;
 }
 
 .item-weather {
+  grid-area: weather;
   margin: 0;
+}
+
+.item-delete {
+  grid-area: delete;
+  justify-self: flex-end;
+  align-self: flex-start;
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-family: "Cabinet Grotesk", arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255, 77, 0, 1);
+}
+
+.item-delete:hover {
+  cursor: pointer;
+  color: red;
 }
 
 @media screen and (max-width: 580px) {

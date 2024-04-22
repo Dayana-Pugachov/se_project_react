@@ -1,0 +1,82 @@
+.toggle-switch__label {
+  display: flex;
+  position: relative;
+}
+
+.toggle-switch__label:hover .toggle-switch__checkbox {
+  border-color: black;
+  cursor: pointer;
+}
+
+.toggle-switch__label:hover .toggle-switch__letter_disabled {
+  color: black;
+  cursor: pointer;
+}
+
+.toggle-switch__checkbox {
+  height: 28px;
+  width: 56px;
+  background-color: white;
+  border: solid 2px #7e7e7e;
+  border-radius: 20px;
+
+  appearance: none;
+  margin: 0;
+}
+
+.toggle-switch__slider {
+  position: absolute;
+  height: 28px;
+  width: 28px;
+  background-color: black;
+  border-radius: 20px;
+  cursor: pointer;
+
+  transition: 0.2s linear;
+}
+
+.toggle-switch__slider_type_f {
+  left: 0;
+}
+
+.toggle-switch__slider_type_f:hover {
+  transform: translateX(1px);
+}
+
+.toggle-switch__slider_type_c {
+  transform: translateX(28px);
+}
+
+.toggle-switch__slider_type_c:hover {
+  transform: translateX(27px);
+}
+
+.toggle-switch__letter {
+  margin: 0;
+  position: absolute;
+  color: #7e7e7e;
+  font-size: 14px;
+
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.toggle-switch__letter_active {
+  color: white;
+}
+
+.toggle-switch__letter_type_f {
+  left: 11px;
+  bottom: 2px;
+}
+
+.toggle-switch__letter_type_c {
+  right: 9px;
+  top: 2px;
+}
+
+/*@media screen and (max-width: 580px) {
+  .toggle-switch__label {
+    
+  }
+}*/

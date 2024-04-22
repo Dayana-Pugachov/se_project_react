@@ -1,9 +1,11 @@
 import logo from "../../images/logo.svg";
 import avatar from "../../images/avatar.svg";
 import "./Header.css";
+import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
-  const currentDate = new Date().toLocaleString("default", {
+  const currentDate = new Date().toLocaleString("en", {
     month: "long",
     day: "numeric",
   });
@@ -11,7 +13,9 @@ function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
   return (
     <header className="header">
       <div className="header__container header__container_type_logo">
-        <img alt="WTWR-logo" src={logo} className="header__logo" />
+        <Link to="/">
+          <img alt="WTWR-logo" src={logo} className="header__logo" />
+        </Link>
         <p className="header__date-location">
           {currentDate}, {location}
         </p>
@@ -23,6 +27,7 @@ function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
             : "header__container_type_options"
         }`}
       >
+        <ToggleSwitch />
         <button
           className="mobile-menu__close-btn"
           type="button"
@@ -37,8 +42,12 @@ function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
         >
           + Add clothes
         </button>
-        <p className="header__user-name">Terrence Tegegne</p>
-        <img alt="User avatar" src={avatar} className="header__avatar" />
+        <Link to="/profile" className="header__user-name">
+          Terrence Tegegne
+        </Link>
+        <Link to="/profile">
+          <img alt="User avatar" src={avatar} className="header__avatar" />
+        </Link>
       </div>
       <button
         className="hamburger"

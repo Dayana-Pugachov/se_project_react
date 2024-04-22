@@ -1,0 +1,30 @@
+.clothes-section {
+  max-width: 1015px;
+  margin-top: 63px;
+}
+
+.clothes-section__title {
+  font-size: 20px;
+  font-weight: 700;
+
+  margin: 0;
+}
+
+.clothes-section__add-btn {
+  padding: 0;
+  margin-left: 20px;
+  border: none;
+  background: transparent;
+  font-family: "Cabinet Grotesk", arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  opacity: 60%;
+}
+.clothes-section__add-btn:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+.gallery__list_type_profile {
+  margin-top: 16px;
+}

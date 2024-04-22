@@ -11,9 +11,12 @@ export function getCurrentForecast({ longitude, latitude }, APIkey) {
 
 export function parseForecastData(data) {
   const result = {};
-  result.temp = Math.ceil(data.main.temp);
+  result.temp = {
+    F: `${Math.round(data.main.temp)}°F`,
+    C: `${Math.round(((data.main.temp - 32) * 5) / 9)}°C`,
+  };
   result.location = data.name;
-  result.type = getWeatherType(result.temp);
+  result.type = getWeatherType(result.temp.F);
   result.condition = data.weather[0].main.toLowerCase();
   result.isDay = isDay(data.sys, Date.now());
   return result;
@@ -24,9 +27,10 @@ function isDay({ sunrise, sunset }, now) {
 }
 
 function getWeatherType(temperature) {
-  if (temperature > 86) {
+  const temperatureNum = Number.parseInt(temperature);
+  if (temperatureNum > 86) {
     return "hot";
-  } else if (temperature >= 66 && temperature < 86) {
+  } else if (temperatureNum >= 66 && temperatureNum < 86) {
     return "warm";
   } else {
     return "cold";

@@ -1,0 +1,19 @@
+.side-bar {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  margin-top: 47px;
+}
+
+.side-bar__avatar {
+  height: 56px;
+  width: 56px;
+  margin-right: 16px;
+}
+
+.side-bar__user-name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  align-items: center;
+}
