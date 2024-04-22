@@ -1,8 +1,22 @@
-# React + Vite
+# Project 4: WTWR (What to Wear)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+"WTWR" is the fourth project in the Software Engineer program at TripleTen.
+It is an application that gives out clothing suggestions based on temperature data retrieved from a weather API.
 
-Currently, two official plugins are available:
+## Project Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React contexts
+- React routes
+- React hooks
+- Flat BEM file structure
+- API requests
+
+## Project's screenshots
+
+![Project screenshot](./src/images/ReadME-screenshots/screenshot1.png "Project screenshot")
+
+![Project screenshot](./src/images/ReadME-screenshots/screenshot2.png "Project screenshot")
+
+![Project screenshot](./src/images/ReadME-screenshots/screenshot3.png "Project screenshot")
+
+![Project screenshot](./src/images/ReadME-screenshots/screenshot4.png "Project screenshot")
