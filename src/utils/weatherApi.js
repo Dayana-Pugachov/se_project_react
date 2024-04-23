@@ -28,7 +28,7 @@ function isDay({ sunrise, sunset }, now) {
 
 function getWeatherType(temperature) {
   const temperatureNum = Number.parseInt(temperature);
-  if (temperatureNum > 86) {
+  if (temperatureNum >= 86) {
     return "hot";
   } else if (temperatureNum >= 66 && temperatureNum < 86) {
     return "warm";

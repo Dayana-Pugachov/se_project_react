@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import "./AddItemPopup.css";
-import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import "./AddItemModal.css";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function AddItemPopup({ onClosePopup, isOpen, onAddItem }) {
+function AddItemModal({ onCloseModal, isOpen, onAddItem }) {
   const [nameInputValue, setNameInputValue] = useState("");
   const [urlInputValue, setUrlInputValue] = useState("");
   const [weatherInputValue, setWeatherInputValue] = useState("");
@@ -30,11 +30,11 @@ function AddItemPopup({ onClosePopup, isOpen, onAddItem }) {
   }
 
   return (
-    <PopupWithForm
+    <ModalWithForm
       title="New garment"
       name="form"
       buttonText="Add garment"
-      onClosePopup={onClosePopup}
+      onCloseModal={onCloseModal}
       isOpen={isOpen}
       handleSubmit={handleSubmit}
     >
@@ -111,8 +111,8 @@ function AddItemPopup({ onClosePopup, isOpen, onAddItem }) {
           </label>
         </div>
       </fieldset>
-    </PopupWithForm>
+    </ModalWithForm>
   );
 }
 
-export default AddItemPopup;
+export default AddItemModal;

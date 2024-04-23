@@ -4,7 +4,7 @@ import "./Header.css";
 import ToggleSwitch from "./ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 
-function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
+function Header({ onOpenModal, location, isMobileMenuOpen, toggleMobileMenu }) {
   const currentDate = new Date().toLocaleString("en", {
     month: "long",
     day: "numeric",
@@ -38,7 +38,7 @@ function Header({ onOpenPopup, location, isMobileMenuOpen, toggleMobileMenu }) {
           id="add-clothes-btn"
           type="button"
           aria-label="Add clothes"
-          onClick={onOpenPopup}
+          onClick={onOpenModal}
         >
           + Add clothes
         </button>

@@ -2,9 +2,9 @@ import "./App.css";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
-import AddItemPopup from "../AddItemPopup/AddItemPopup";
-import ItemPopup from "../ItemPopup/ItemPopup";
-import ConfirmPopup from "../ConfirmPopup/ConfirmPopup";
+import AddItemModal from "../AddItemModal/AddItemModal";
+import ItemModal from "../ItemModal/ItemModal";
+import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import Profile from "../Profile/Profile";
 import { useEffect, useState } from "react";
 import { getCurrentForecast, parseForecastData } from "../../utils/weatherApi";
@@ -25,21 +25,21 @@ function App() {
     condition: "",
   });
   const [location, setLocation] = useState("");
-  const [activePopup, setActivePopup] = useState("");
+  const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [isAddPopupVisible, setIsAddPopupVisible] = useState(false);
+  const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
 
-  //"add-popup" or "preview" or "confirm"
-  function handleOpenPopup(popup) {
-    if (popup === "add-popup") {
-      setActivePopup(popup);
-      setIsAddPopupVisible(true);
+  //"add-modal" or "preview" or "confirm"
+  function handleOpenModal(modal) {
+    if (modal === "add-modal") {
+      setActiveModal(modal);
+      setIsAddModalVisible(true);
       setIsMobileMenuOpen(false);
     } else {
-      setActivePopup(popup);
+      setActiveModal(modal);
     }
   }
 
@@ -47,13 +47,13 @@ function App() {
     setIsMobileMenuOpen((state) => !state);
   }
 
-  function handleClosePopup() {
-    setActivePopup("");
+  function handleCloseModal() {
+    setActiveModal("");
   }
 
   function handleCardClick(card) {
     setSelectedCard(card);
-    handleOpenPopup("preview");
+    handleOpenModal("preview");
   }
 
   const handleToggleSwitchChange = () => {
@@ -68,7 +68,7 @@ function App() {
         setClothingItems([item, ...clothingItems]);
       })
       .catch(console.error)
-      .finally(handleClosePopup);
+      .finally(handleCloseModal);
   }
 
   function deleteSelectedCard() {
@@ -79,32 +79,32 @@ function App() {
         );
       })
       .catch(console.error)
-      .finally(handleClosePopup);
+      .finally(handleCloseModal);
   }
 
   //side effect of handleEsc
   useEffect(() => {
-    if (!activePopup) return;
+    if (!activeModal) return;
     const handleEsc = (event) => {
       if (event.key === "Escape") {
-        handleClosePopup();
+        handleCloseModal();
       }
     };
     document.addEventListener("keydown", handleEsc);
     return () => document.removeEventListener("keydown", handleEsc);
-  }, [activePopup]);
+  }, [activeModal]);
 
   //side effect of handleClickOff
   useEffect(() => {
-    if (!activePopup) return;
+    if (!activeModal) return;
     const handleClickOff = (event) => {
-      if (event.target.classList.contains("popup")) {
-        handleClosePopup();
+      if (event.target.classList.contains("modal")) {
+        handleCloseModal();
       }
     };
     document.addEventListener("click", handleClickOff);
     return () => document.removeEventListener("click", handleClickOff);
-  }, [activePopup]);
+  }, [activeModal]);
 
   //side effect of retrieving weather && location from weatherApi
   useEffect(() => {
@@ -132,7 +132,7 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <Header
-          onOpenPopup={() => handleOpenPopup("add-popup")}
+          onOpenModal={() => handleOpenModal("add-modal")}
           location={location}
           isMobileMenuOpen={isMobileMenuOpen}
           toggleMobileMenu={toggleMobileMenu}
@@ -154,28 +154,28 @@ function App() {
               <Profile
                 handleCardClick={handleCardClick}
                 clothingItems={clothingItems}
-                handleAddPopupOpen={() => handleOpenPopup("add-popup")}
+                handleAddModalOpen={() => handleOpenModal("add-modal")}
               />
             }
           />
         </Routes>
         <Footer />
-        <AddItemPopup
-          onClosePopup={handleClosePopup}
-          isOpen={activePopup === "add-popup"}
+        <AddItemModal
+          onCloseModal={handleCloseModal}
+          isOpen={activeModal === "add-modal"}
           onAddItem={handleAddItemSubmit}
         />
-        <ItemPopup
+        <ItemModal
           name="preview"
           card={selectedCard}
-          onClosePopup={handleClosePopup}
-          isOpen={activePopup === "preview"}
-          handleConfirmPopupOpen={() => handleOpenPopup("confirm")}
+          onCloseModal={handleCloseModal}
+          isOpen={activeModal === "preview"}
+          handleConfirmModalOpen={() => handleOpenModal("confirm")}
         />
-        <ConfirmPopup
+        <ConfirmModal
           name="confirm"
-          onClosePopup={handleClosePopup}
-          isOpen={activePopup === "confirm"}
+          onCloseModal={handleCloseModal}
+          isOpen={activeModal === "confirm"}
           handleDeleteItem={deleteSelectedCard}
         />
       </CurrentTemperatureUnitContext.Provider>

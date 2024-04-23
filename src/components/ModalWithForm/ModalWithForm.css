@@ -1,4 +1,4 @@
-.popup {
+.modal {
   display: flex;
   position: fixed;
   background-color: rgba(0, 0, 0, 0.3);
@@ -13,13 +13,13 @@
   transition: visibility 0s linear 0.2s, opacity 0.2s linear;
 }
 
-.popup_opened {
+.modal_opened {
   visibility: visible;
   opacity: 1;
   transition-delay: 0s;
 }
 
-.popup__container {
+.modal__container {
   display: flex;
   position: relative;
   flex-direction: column;
@@ -32,15 +32,15 @@
   padding: 28px 28px 36px;
 }
 
-.popup__container_type_form {
+.modal__container_type_form {
   max-width: 440px;
 }
 
-.popup__title {
+.modal__title {
   margin: 0 0 24px;
 }
 
-.popup__close {
+.modal__close {
   position: absolute;
   background-image: url("../../images/close-button.svg");
   border: none;
@@ -54,7 +54,7 @@
   transition: all 0.2s ease;
 }
 
-.popup__close:hover {
+.modal__close:hover {
   cursor: pointer;
   transform: rotate(90deg);
 }
@@ -143,29 +143,29 @@
 }
 
 @media screen and (max-width: 580px) {
-  .popup_type_form {
+  .modal_type_form {
     align-items: end;
     bottom: -447px;
     opacity: 1;
     transition: visibility 0s ease 0.5s, bottom 0.5s ease;
   }
 
-  .popup_opened {
+  .modal_opened {
     bottom: 0;
     transition-delay: 0s;
   }
 
-  .popup__container {
+  .modal__container {
     padding: 32px 16px;
     border-radius: 20px 20px 0 0;
   }
 
-  .popup__title {
+  .modal__title {
     font-size: 20px;
     margin-bottom: 37px;
   }
 
-  .popup__close {
+  .modal__close {
     background-image: url("../../images/mobile-design/black-x.svg");
     height: 21.21px;
     width: 21.41px;

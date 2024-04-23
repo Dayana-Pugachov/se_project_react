@@ -4,7 +4,7 @@ import ItemCard from "../../Main/ItemCard/ItemCard";
 function ClothesSection({
   handleCardClick,
   clothingItems,
-  handleAddPopupOpen,
+  handleAddModalOpen,
 }) {
   return (
     <section className="clothes-section">
@@ -14,7 +14,7 @@ function ClothesSection({
           className="clothes-section__add-btn"
           type="button"
           aria-label="Add new clothing item"
-          onClick={handleAddPopupOpen}
+          onClick={handleAddModalOpen}
         >
           + Add new
         </button>

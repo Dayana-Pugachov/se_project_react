@@ -1,15 +1,15 @@
-.popup__container_type_confirm {
+.modal__container_type_confirm {
   max-width: 367px;
   padding: 60px 151px;
   align-items: center;
   justify-content: center;
 }
 
-.popup__close_type_confirm {
+.modal__close_type_confirm {
   right: 20px;
 }
 
-.popup__button {
+.modal__button {
   padding: 0;
   border: none;
   background: transparent;
@@ -18,23 +18,23 @@
   font-weight: 700;
 }
 
-.popup__text {
+.modal__text {
   max-width: 367px;
   text-align: center;
   font-size: 20px;
   margin: 0 0 40px 0;
 }
 
-.popup__button_type_yes {
+.modal__button_type_yes {
   color: rgba(255, 77, 0, 1);
   margin-bottom: 24px;
 }
 
-.popup__button_type_yes:hover {
+.modal__button_type_yes:hover {
   cursor: pointer;
   color: red;
 }
 
-.popup__button_type_cancel:hover {
+.modal__button_type_cancel:hover {
   cursor: pointer;
 }

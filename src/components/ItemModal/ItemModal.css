@@ -1,23 +1,23 @@
-.popup__container_type_preview {
+.modal__container_type_preview {
   max-width: 498px;
   border-radius: 16px;
   padding: 0;
 }
 
-.popup__item-image {
+.modal__item-image {
   width: 498px;
   height: 498px;
   border-radius: 16px 16px 0 0;
 }
 
-.popup__close_type_preview {
+.modal__close_type_preview {
   position: absolute;
   top: 24px;
   right: 24px;
   background-image: url("../../images/close-transparent.svg");
 }
 
-.popup__item-description {
+.modal__item-description {
   display: grid;
   grid-template-areas:
     "name delete"
@@ -56,20 +56,20 @@
 }
 
 @media screen and (max-width: 580px) {
-  .popup_opened {
+  .modal_opened {
     visibility: visible;
   }
 
-  .popup__container_type_preview {
+  .modal__container_type_preview {
     max-width: 343px;
   }
 
-  .popup__item-image {
+  .modal__item-image {
     width: 343px;
     height: 343px;
   }
 
-  .popup__close_type_preview {
+  .modal__close_type_preview {
     background-image: url("../../images/mobile-design/black-x.svg");
     height: 21.21px;
     width: 21.41px;
