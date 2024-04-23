@@ -27,20 +27,18 @@ function App() {
   const [location, setLocation] = useState("");
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
-  const [isAddModalVisible, setIsAddModalVisible] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  //"add-modal" or "preview" or "confirm"
-  function handleOpenModal(modal) {
-    if (modal === "add-modal") {
-      setActiveModal(modal);
-      setIsAddModalVisible(true);
-      setIsMobileMenuOpen(false);
-    } else {
-      setActiveModal(modal);
-    }
+  function openConfirmModal() {
+    setActiveModal("confirm");
+  }
+
+  function openAddModal() {
+    setActiveModal("add-modal");
+    setIsMobileMenuOpen(false);
   }
 
   function toggleMobileMenu() {
@@ -53,7 +51,7 @@ function App() {
 
   function handleCardClick(card) {
     setSelectedCard(card);
-    handleOpenModal("preview");
+    setActiveModal("preview");
   }
 
   const handleToggleSwitchChange = () => {
@@ -63,12 +61,17 @@ function App() {
   };
 
   function handleAddItemSubmit(inputValues) {
+    console.log("Before setting isLoading to true:", isLoading);
+    setIsLoading(true);
+    console.log("After setting isLoading to true:", isLoading);
     addClothingItem(inputValues)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
+        handleCloseModal();
       })
       .catch(console.error)
-      .finally(handleCloseModal);
+      .finally(setIsLoading(false));
+    console.log(isLoading);
   }
 
   function deleteSelectedCard() {
@@ -77,9 +80,9 @@ function App() {
         setClothingItems(
           clothingItems.filter((item) => selectedCard._id !== item._id)
         );
+        handleCloseModal();
       })
-      .catch(console.error)
-      .finally(handleCloseModal);
+      .catch(console.error);
   }
 
   //side effect of handleEsc
@@ -132,7 +135,7 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <Header
-          onOpenModal={() => handleOpenModal("add-modal")}
+          onOpenModal={openAddModal}
           location={location}
           isMobileMenuOpen={isMobileMenuOpen}
           toggleMobileMenu={toggleMobileMenu}
@@ -154,7 +157,7 @@ function App() {
               <Profile
                 handleCardClick={handleCardClick}
                 clothingItems={clothingItems}
-                handleAddModalOpen={() => handleOpenModal("add-modal")}
+                handleAddModalOpen={openAddModal}
               />
             }
           />
@@ -164,13 +167,14 @@ function App() {
           onCloseModal={handleCloseModal}
           isOpen={activeModal === "add-modal"}
           onAddItem={handleAddItemSubmit}
+          isLoading={isLoading}
         />
         <ItemModal
           name="preview"
           card={selectedCard}
           onCloseModal={handleCloseModal}
           isOpen={activeModal === "preview"}
-          handleConfirmModalOpen={() => handleOpenModal("confirm")}
+          handleConfirmModalOpen={openConfirmModal}
         />
         <ConfirmModal
           name="confirm"

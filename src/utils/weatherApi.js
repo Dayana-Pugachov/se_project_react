@@ -1,12 +1,9 @@
+import { checkResponse } from "./api";
+
 export function getCurrentForecast({ longitude, latitude }, APIkey) {
   return fetch(
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
-  ).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Something went wrong: ${res.status}`);
-  });
+  ).then(checkResponse);
 }
 
 export function parseForecastData(data) {

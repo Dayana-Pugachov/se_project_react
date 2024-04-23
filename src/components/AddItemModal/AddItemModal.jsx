@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./AddItemModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function AddItemModal({ onCloseModal, isOpen, onAddItem }) {
+function AddItemModal({ onCloseModal, isOpen, onAddItem, isLoading }) {
   const [nameInputValue, setNameInputValue] = useState("");
   const [urlInputValue, setUrlInputValue] = useState("");
   const [weatherInputValue, setWeatherInputValue] = useState("");
@@ -33,7 +33,7 @@ function AddItemModal({ onCloseModal, isOpen, onAddItem }) {
     <ModalWithForm
       title="New garment"
       name="form"
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving..." : "Add garment"}
       onCloseModal={onCloseModal}
       isOpen={isOpen}
       handleSubmit={handleSubmit}
@@ -55,7 +55,7 @@ function AddItemModal({ onCloseModal, isOpen, onAddItem }) {
           onChange={handleNameChange}
         ></input>
 
-        <label className="form__label form__label_type_text" htmlFor="link">
+        <label className="form__label form__label_type_text" htmlFor="url">
           Image
         </label>
         <input

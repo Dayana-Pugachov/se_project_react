@@ -32,4 +32,4 @@ function deleteClothingItem(cardId) {
   }).then(checkResponse);
 }
 
-export { getClothingItems, addClothingItem, deleteClothingItem };
+export { getClothingItems, addClothingItem, deleteClothingItem, checkResponse };
