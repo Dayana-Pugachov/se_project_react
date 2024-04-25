@@ -61,17 +61,15 @@ function App() {
   };
 
   function handleAddItemSubmit(inputValues) {
-    console.log("Before setting isLoading to true:", isLoading);
     setIsLoading(true);
-    console.log("After setting isLoading to true:", isLoading);
+
     addClothingItem(inputValues)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         handleCloseModal();
       })
       .catch(console.error)
-      .finally(setIsLoading(false));
-    console.log(isLoading);
+      .finally(setTimeout(() => setIsLoading(false), 500));
   }
 
   function deleteSelectedCard() {
