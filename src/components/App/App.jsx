@@ -32,10 +32,6 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  function openConfirmModal() {
-    setActiveModal("confirm");
-  }
-
   function openAddModal() {
     setActiveModal("add-modal");
     setIsMobileMenuOpen(false);
@@ -172,7 +168,7 @@ function App() {
           card={selectedCard}
           onCloseModal={handleCloseModal}
           isOpen={activeModal === "preview"}
-          handleConfirmModalOpen={openConfirmModal}
+          handleConfirmModalOpen={() => setActiveModal("confirm")}
         />
         <ConfirmModal
           name="confirm"
