@@ -58,17 +58,17 @@ function App() {
 
   function handleAddItemSubmit(inputValues) {
     setIsLoading(true);
-
     addClothingItem(inputValues)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
         handleCloseModal();
       })
       .catch(console.error)
-      .finally(setTimeout(() => setIsLoading(false), 500));
+      .finally(() => setIsLoading(false));
   }
 
   function deleteSelectedCard() {
+    setIsLoading(true);
     deleteClothingItem(selectedCard._id)
       .then(() => {
         setClothingItems(
@@ -76,7 +76,8 @@ function App() {
         );
         handleCloseModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }
 
   //side effect of handleEsc
