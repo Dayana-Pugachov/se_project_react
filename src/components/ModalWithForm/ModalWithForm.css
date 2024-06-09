@@ -28,13 +28,14 @@
   background-color: white;
 
   width: 100%;
+  max-width: 440px;
   border-radius: 20px;
   padding: 28px 28px 36px;
 }
 
-.modal__container_type_form {
+/*.modal__container_type_form {
   max-width: 440px;
-}
+}*/
 
 .modal__title {
   margin: 0 0 24px;
@@ -140,6 +141,27 @@
 
 .form__submit_disabled {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+.form__or-button {
+  padding-left: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: white;
+  color: black;
+  font-family: "Cabinet Grotesk", arial, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  visibility: hidden;
+}
+
+.form__or-button:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.button_visible {
+  visibility: visible;
 }
 
 @media screen and (max-width: 580px) {

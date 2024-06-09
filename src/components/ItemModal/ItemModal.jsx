@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import "./ItemModal.css";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function ItemModal({
   name,
@@ -7,6 +9,14 @@ function ItemModal({
   isOpen,
   handleConfirmModalOpen,
 }) {
+  const currentUser = useContext(CurrentUserContext);
+
+  const isOwn = card.owner === currentUser._id;
+
+  const itemDeleteButtonClassName = isOwn
+    ? "item-delete"
+    : "item-delete_hidden";
+
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_opened" : ""}`}>
       <div className={`modal__container modal__container_type_${name}`}>
@@ -25,7 +35,7 @@ function ItemModal({
           <p className="item-name">{card.name}</p>
           <p className="item-weather">Weather: {card.weather}</p>
           <button
-            className="item-delete"
+            className={itemDeleteButtonClassName}
             type="button"
             aria-label="Delete item"
             onClick={handleConfirmModalOpen}

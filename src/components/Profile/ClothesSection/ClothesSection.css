@@ -1,6 +1,7 @@
 .clothes-section {
   max-width: 1015px;
   margin-top: 63px;
+  margin-left: 116px; /*I just added this*/
 }
 
 .clothes-section__title {

@@ -8,6 +8,7 @@ function ModalWithForm({
   onCloseModal,
   isOpen,
   handleSubmit,
+  orButtonText,
 }) {
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_opened" : ""}`}>
@@ -21,9 +22,19 @@ function ModalWithForm({
         />
         <form onSubmit={handleSubmit} className="form modal__form">
           {children}
-          <button type="submit" className="form__submit">
-            {buttonText}
-          </button>
+          <div className="buttons-wrapper">
+            <button type="submit" className="form__submit">
+              {buttonText}
+            </button>
+            <button
+              type="button"
+              className={`${
+                name === "sign-up" || "log-in" ? "button_visible" : ""
+              } form__or-button`}
+            >
+              {orButtonText}
+            </button>
+          </div>
         </form>
       </div>
     </div>

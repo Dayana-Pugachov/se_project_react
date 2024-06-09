@@ -61,7 +61,7 @@ function AddItemModal({ onCloseModal, isOpen, onAddItem, isLoading }) {
         <input
           className="form__input"
           id="url"
-          name="url"
+          name="url" //see the difference
           placeholder="Image URL"
           type="url"
           required

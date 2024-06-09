@@ -61,10 +61,47 @@
   width: 40px;
   height: 40px;
   margin-left: 12px;
+  border-radius: 20px;
 }
 
 .header__avatar:hover {
   cursor: pointer;
+}
+
+.header__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border: solid 2px #7e7e7e;
+  border-radius: 20px;
+  background-color: white;
+  font-family: "Cabinet Grotesk", arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #7e7e7e;
+  margin-left: 12px;
+}
+
+.header__avatar-placeholder:hover {
+  cursor: pointer;
+}
+
+.header__auth {
+  border: none;
+  max-width: 116px;
+  height: 24px;
+  background: transparent;
+  font-family: "Cabinet Grotesk", arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-left: 20px;
+}
+
+.header__auth:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 /*Mobile features*/

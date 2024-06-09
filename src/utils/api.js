@@ -1,5 +1,4 @@
 const baseUrl = "http://localhost:3001";
-const headers = { "Content-Type": "application/json" };
 
 function checkResponse(res) {
   if (res.ok) {
@@ -12,11 +11,15 @@ function getClothingItems() {
   return fetch(`${baseUrl}/items`).then(checkResponse);
 }
 
-function addClothingItem(values) {
+function addClothingItem(values, token) {
   //values = inputValues I recieve from the form
   return fetch(`${baseUrl}/items`, {
     method: "POST",
-    headers: headers,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify({
       name: values.nameInputValue,
       imageUrl: values.urlInputValue,
@@ -25,11 +28,32 @@ function addClothingItem(values) {
   }).then(checkResponse);
 }
 
-function deleteClothingItem(cardId) {
+function deleteClothingItem(cardId, token) {
   return fetch(`${baseUrl}/items/${cardId}`, {
     method: "DELETE",
-    headers: headers,
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   }).then(checkResponse);
 }
 
-export { getClothingItems, addClothingItem, deleteClothingItem, checkResponse };
+function getUserInfo(token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+export {
+  getClothingItems,
+  addClothingItem,
+  deleteClothingItem,
+  checkResponse,
+  getUserInfo,
+};

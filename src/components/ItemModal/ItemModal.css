@@ -55,6 +55,10 @@
   color: red;
 }
 
+.item-delete_hidden {
+  display: none;
+}
+
 @media screen and (max-width: 580px) {
   .modal_opened {
     visibility: visible;
