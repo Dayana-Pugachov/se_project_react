@@ -50,10 +50,26 @@ function getUserInfo(token) {
   }).then(checkResponse);
 }
 
+function updateUserInfo(values, token) {
+  return fetch(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: values.name,
+      avatar: values.avatar,
+    }),
+  }).then(checkResponse);
+}
+
 export {
   getClothingItems,
   addClothingItem,
   deleteClothingItem,
   checkResponse,
   getUserInfo,
+  updateUserInfo,
 };

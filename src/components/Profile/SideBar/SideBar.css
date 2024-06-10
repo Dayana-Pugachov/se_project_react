@@ -1,19 +1,47 @@
-.side-bar {
+.side-bar__user-data {
   display: flex;
   align-items: center;
   height: 56px;
   margin-top: 47px;
 }
 
-.side-bar__avatar {
+.user-data__avatar {
   height: 56px;
   width: 56px;
   margin-right: 16px;
+  border-radius: 56px;
 }
 
-.side-bar__user-name {
+.user-data__name {
   margin: 0;
   font-size: 20px;
   font-weight: 700;
   align-items: center;
+}
+
+.side-bar__nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__button {
+  text-align: start;
+  border: none;
+  background: transparent;
+  font-family: "Cabinet Grotesk", arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  padding: 0;
+}
+
+.nav__button:hover {
+  cursor: pointer;
+}
+
+.nav__button_type_edit-data {
+  margin-top: 24px;
+}
+
+.nav__button_type_log-out {
+  margin-top: 8px;
 }

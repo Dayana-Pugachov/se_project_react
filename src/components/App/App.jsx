@@ -7,6 +7,7 @@ import ItemModal from "../ItemModal/ItemModal";
 import ConfirmModal from "../ConfirmModal/ConfirmModal";
 import RegisterModal from "../RegisterModal/RegisterModal";
 import LoginModal from "../LoginModal/LoginModal";
+import EditProfileModal from "../EditProfileModal/EditProfileModal";
 import Profile from "../Profile/Profile";
 import { useEffect, useState } from "react";
 import { getCurrentForecast, parseForecastData } from "../../utils/weatherApi";
@@ -19,6 +20,7 @@ import {
   addClothingItem,
   deleteClothingItem,
   getUserInfo,
+  updateUserInfo,
 } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute";
 import { register, authorize } from "../../utils/auth";
@@ -38,7 +40,9 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({}); //what is that??
+  const [currentUser, setCurrentUser] = useState({});
+
+  const jwt = localStorage.getItem("jwt");
 
   function openAddModal() {
     setActiveModal("add-modal");
@@ -64,20 +68,9 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
-  function handleAddItemSubmit(inputValues) {
-    setIsLoading(true);
-    addClothingItem(inputValues)
-      .then((item) => {
-        setClothingItems([item, ...clothingItems]);
-        handleCloseModal();
-      })
-      .catch(console.error)
-      .finally(() => setIsLoading(false));
-  }
-
   function deleteSelectedCard() {
     setIsLoading(true);
-    deleteClothingItem(selectedCard._id)
+    deleteClothingItem(selectedCard._id, jwt)
       .then(() => {
         setClothingItems(
           clothingItems.filter((item) => selectedCard._id !== item._id)
@@ -107,16 +100,52 @@ function App() {
           getUserInfo(res.token)
             .then((user) => {
               setCurrentUser(user.data);
-            })
-            .then(() => {
               setIsLoggedIn(true);
-              console.log("Am I logged in?", isLoggedIn);
             })
+
             .catch(console.error);
         }
       })
       .catch(console.error);
   }
+
+  function handleAddItemSubmit(inputValues) {
+    setIsLoading(true);
+    addClothingItem(inputValues, jwt)
+      .then((item) => {
+        setClothingItems([item.data, ...clothingItems]);
+        handleCloseModal();
+      })
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  }
+
+  function handleProfileEdit(data) {
+    updateUserInfo(data, jwt)
+      .then((user) => {
+        currentUser.name = user.data.name;
+        currentUser.avatar = user.data.avatar;
+        handleCloseModal();
+      })
+      .catch(console.error);
+  }
+
+  //USE EFFECTS
+
+  useEffect(() => {
+    //const jwt = localStorage.getItem("jwt");
+
+    if (!jwt) {
+      console.log("No token");
+      return;
+    }
+    getUserInfo(jwt)
+      .then((user) => {
+        setCurrentUser(user.data);
+        setIsLoggedIn(true);
+      })
+      .catch(console.error);
+  }, []);
 
   //side effect of handleEsc
   useEffect(() => {
@@ -153,39 +182,24 @@ function App() {
       .catch(console.error);
   }, []);
 
-  useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-
-    if (!jwt) {
-      console.log("No token");
-      return;
-    }
-    getUserInfo(jwt)
-      .then((user) => {
-        setCurrentUser(user.data);
-        console.log("The user has been set");
-      })
-      .then(() => {
-        setIsLoggedIn(true);
-        console.log("Am I logged in?", isLoggedIn);
-      })
-      .catch(console.error);
-  }, []);
-
   //side effect of retrieving clothing items from api
   useEffect(() => {
     getClothingItems()
-      .then(({ data }) => {
-        console.log(data);
-        setClothingItems(data);
+      .then((data) => {
+        console.log(data.data);
+        setClothingItems(data.data);
       })
       .catch(console.error);
   }, []);
 
   //test
   useEffect(() => {
-    console.log("isLoggedIn state has changed:", isLoggedIn);
-  }, [isLoggedIn]);
+    console.log("Who's the current user", currentUser);
+  }, []);
+
+  useEffect(() => {
+    console.log("Am I logged in?", isLoggedIn);
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -216,14 +230,14 @@ function App() {
             <Route
               path="/profile"
               element={
-                <ProtectedRoute
-                  isLoggedIn={isLoggedIn}
-                  openLoginModal={() => setActiveModal("log-in")}
-                >
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Profile
                     handleCardClick={handleCardClick}
                     clothingItems={clothingItems}
                     handleAddModalOpen={openAddModal}
+                    handleEditProfileModalOpen={() =>
+                      setActiveModal("edit-profile")
+                    }
                   />
                 </ProtectedRoute>
               }
@@ -259,6 +273,11 @@ function App() {
             isOpen={activeModal === "log-in"}
             handleLogin={handleLogin}
           ></LoginModal>
+          <EditProfileModal
+            onCloseModal={handleCloseModal}
+            isOpen={activeModal === "edit-profile"}
+            handleProfileEdit={handleProfileEdit}
+          ></EditProfileModal>
         </CurrentTemperatureUnitContext.Provider>
       </div>
     </CurrentUserContext.Provider>

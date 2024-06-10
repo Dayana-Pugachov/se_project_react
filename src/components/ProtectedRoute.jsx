@@ -1,8 +1,8 @@
 import { Navigate } from "react-router-dom";
 
-function ProtectedRoute({ isLoggedIn, children, openLoginModal }) {
+function ProtectedRoute({ isLoggedIn, children }) {
   if (!isLoggedIn) {
-    openLoginModal();
+    console.error("You logged out");
     return <Navigate to="/" replace />;
   }
   return children;
