@@ -215,7 +215,7 @@ function App() {
     getClothingItems()
       .then((data) => {
         console.log(data.data);
-        setClothingItems(data.data);
+        setClothingItems(data.data.reverse());
       })
       .catch(console.error);
   }, []);
@@ -269,6 +269,8 @@ function App() {
                       setActiveModal("edit-profile")
                     }
                     handleLogOut={handleLogOut}
+                    isLoggedIn={isLoggedIn}
+                    onCardLike={handleCardLike}
                   />
                 </ProtectedRoute>
               }

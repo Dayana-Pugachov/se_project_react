@@ -8,6 +8,8 @@ function Profile({
   handleAddModalOpen,
   handleEditProfileModalOpen,
   handleLogOut,
+  isLoggedIn,
+  onCardLike,
 }) {
   return (
     <section className="profile__section">
@@ -19,6 +21,8 @@ function Profile({
         handleCardClick={handleCardClick}
         clothingItems={clothingItems}
         handleAddModalOpen={handleAddModalOpen}
+        isLoggedIn={isLoggedIn}
+        onCardLike={onCardLike}
       />
     </section>
   );

@@ -7,6 +7,8 @@ function ClothesSection({
   handleCardClick,
   clothingItems,
   handleAddModalOpen,
+  isLoggedIn,
+  onCardLike,
 }) {
   const currentUser = useContext(CurrentUserContext);
 
@@ -33,6 +35,8 @@ function ClothesSection({
                 item={item}
                 key={item._id}
                 handleCardClick={() => handleCardClick(item)}
+                isLoggedIn={isLoggedIn}
+                onCardLike={onCardLike}
               />
             );
           })}

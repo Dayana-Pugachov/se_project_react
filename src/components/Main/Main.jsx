@@ -34,7 +34,7 @@ function Main({
                   item={item}
                   key={item._id}
                   handleCardClick={() => handleCardClick(item)}
-                  isLoggenIn={isLoggedIn}
+                  isLoggedIn={isLoggedIn}
                   onCardLike={onCardLike}
                 />
               );

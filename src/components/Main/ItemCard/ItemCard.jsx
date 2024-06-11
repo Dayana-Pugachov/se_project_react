@@ -23,7 +23,7 @@ function ItemCard({ item, handleCardClick, isLoggedIn, onCardLike }) {
       <div className="wrapper">
         <p className="card__title">{item.name}</p>
         <button
-          className={isLoggedIn ? itemLikeButtonClassName : "hidden"} //here!!!
+          className={isLoggedIn ? itemLikeButtonClassName : "hidden"}
           type="button"
           aria-label="like"
           onClick={handleLike}
