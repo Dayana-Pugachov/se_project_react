@@ -7,10 +7,14 @@ function Profile({
   clothingItems,
   handleAddModalOpen,
   handleEditProfileModalOpen,
+  handleLogOut,
 }) {
   return (
     <section className="profile__section">
-      <SideBar handleEditProfileModalOpen={handleEditProfileModalOpen} />
+      <SideBar
+        handleEditProfileModalOpen={handleEditProfileModalOpen}
+        handleLogOut={handleLogOut}
+      />
       <ClothesSection
         handleCardClick={handleCardClick}
         clothingItems={clothingItems}

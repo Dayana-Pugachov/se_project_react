@@ -18,9 +18,14 @@
   width: 323px;
 }
 
-.card__title {
+.wrapper {
   display: flex;
   position: absolute;
+  align-items: center;
+  top: 15px;
+}
+
+.card__title {
   background-color: white;
   padding: 2px 12px 2px 12px;
   border-radius: 4px;
@@ -28,8 +33,39 @@
   text-align: center;
   font-weight: 700;
   color: rgba(0, 0, 0, 0.6);
-  top: 15px;
   margin: 0;
+}
+
+.card__like {
+  height: 15px;
+  width: 18px;
+  padding: 10px;
+  display: flex;
+  background: transparent url("../../../images/like-empty.svg") center no-repeat;
+  border: none;
+  margin-left: 10px;
+}
+
+.card__like:hover {
+  cursor: pointer;
+}
+
+.card__like_active {
+  height: 15px;
+  width: 18px;
+  padding: 10px;
+  display: flex;
+  background: transparent url("../../../images/like-full.svg") center no-repeat;
+  border: none;
+  margin-left: 10px;
+}
+
+.card__like_active:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 @media screen and (max-width: 580px) {

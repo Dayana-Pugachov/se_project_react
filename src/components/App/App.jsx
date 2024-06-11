@@ -21,6 +21,8 @@ import {
   deleteClothingItem,
   getUserInfo,
   updateUserInfo,
+  likeClothingItem,
+  unlikeClothingItem,
 } from "../../utils/api";
 import ProtectedRoute from "../ProtectedRoute";
 import { register, authorize } from "../../utils/auth";
@@ -130,6 +132,32 @@ function App() {
       .catch(console.error);
   }
 
+  function handleCardLike(cardId, isLiked) {
+    console.log("cardId:", cardId);
+    if (!isLiked) {
+      likeClothingItem(cardId, jwt)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === cardId ? updatedCard.data : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    } else {
+      unlikeClothingItem(cardId, jwt)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === cardId ? updatedCard.data : item))
+          );
+        })
+        .catch((err) => console.log(err));
+    }
+  }
+
+  function handleLogOut() {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+  }
+
   //USE EFFECTS
 
   useEffect(() => {
@@ -224,6 +252,8 @@ function App() {
                   handleCardClick={handleCardClick}
                   weatherData={weatherData}
                   clothingItems={clothingItems}
+                  isLoggedIn={isLoggedIn}
+                  onCardLike={handleCardLike}
                 />
               }
             />
@@ -238,6 +268,7 @@ function App() {
                     handleEditProfileModalOpen={() =>
                       setActiveModal("edit-profile")
                     }
+                    handleLogOut={handleLogOut}
                   />
                 </ProtectedRoute>
               }

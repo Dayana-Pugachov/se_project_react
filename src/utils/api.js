@@ -65,6 +65,28 @@ function updateUserInfo(values, token) {
   }).then(checkResponse);
 }
 
+function likeClothingItem(cardId, token) {
+  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+    method: "PUT",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
+function unlikeClothingItem(cardId, token) {
+  return fetch(`${baseUrl}/items/${cardId}/likes`, {
+    method: "DELETE",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  }).then(checkResponse);
+}
+
 export {
   getClothingItems,
   addClothingItem,
@@ -72,4 +94,6 @@ export {
   checkResponse,
   getUserInfo,
   updateUserInfo,
+  likeClothingItem,
+  unlikeClothingItem,
 };
