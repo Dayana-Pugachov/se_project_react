@@ -1,6 +1,7 @@
 .content {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .content__title {
@@ -11,7 +12,7 @@
 
 .content__gallery {
   margin-top: 35px;
-  margin-bottom: 172px;
+  margin-bottom: 85px;
 }
 
 .gallery__list {

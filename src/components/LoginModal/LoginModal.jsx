@@ -2,11 +2,21 @@ import { useEffect, useState } from "react";
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ onCloseModal, isOpen, handleLogin }) {
+function LoginModal({
+  onCloseModal,
+  isOpen,
+  handleLogin,
+  isErrorActive,
+  handleModalRedirect,
+}) {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
+
+  const formErrorClassName = isErrorActive
+    ? "form__error_active"
+    : "form__error";
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -30,6 +40,7 @@ function LoginModal({ onCloseModal, isOpen, handleLogin }) {
       isOpen={isOpen}
       orButtonText="or Sign Up"
       handleSubmit={handleSubmit}
+      onModalRedirect={handleModalRedirect}
     >
       <fieldset className="form__fieldset">
         <label className="form__label form__label_type_text" htmlFor="email">
@@ -60,6 +71,7 @@ function LoginModal({ onCloseModal, isOpen, handleLogin }) {
           value={loginData.password}
           onChange={handleChange}
         ></input>
+        <div className={formErrorClassName}>Incorrect email or password.</div>
       </fieldset>
     </ModalWithForm>
   );

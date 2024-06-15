@@ -1,6 +1,6 @@
 import "./ClothesSection.css";
 import ItemCard from "../../Main/ItemCard/ItemCard";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
 function ClothesSection({
@@ -10,7 +10,24 @@ function ClothesSection({
   isLoggedIn,
   onCardLike,
 }) {
+  const [isGalleryEmpty, setIsGalleryEmpty] = useState(true);
   const currentUser = useContext(CurrentUserContext);
+
+  const galleryEmpty = !clothingItems.some(
+    (item) => item.owner === currentUser._id
+  );
+
+  const emptyGalleryClassName = isGalleryEmpty
+    ? "gallery_type_empty"
+    : "hidden";
+
+  useEffect(() => {
+    if (galleryEmpty) {
+      setIsGalleryEmpty(true);
+    } else {
+      setIsGalleryEmpty(false);
+    }
+  }, [clothingItems]);
 
   return (
     <section className="clothes-section">
@@ -27,6 +44,9 @@ function ClothesSection({
       </p>
 
       <ul className="gallery__list gallery__list_type_profile">
+        <div className={emptyGalleryClassName}>
+          You haven't added any clothing items yet. Click "+Add new".
+        </div>
         {clothingItems
           .filter((item) => item.owner === currentUser._id)
           .map((item) => {

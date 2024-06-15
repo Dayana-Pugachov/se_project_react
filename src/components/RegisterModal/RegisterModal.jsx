@@ -1,14 +1,24 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./RegisterModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function RegisterModal({ onCloseModal, isOpen, handleRegistration }) {
+function RegisterModal({
+  onCloseModal,
+  isOpen,
+  handleRegistration,
+  isErrorActive,
+  handleModalRedirect,
+}) {
   const [registerData, setRegisterData] = useState({
     email: "",
     password: "",
     name: "",
     avatar: "",
   });
+
+  const formErrorClassName = isErrorActive
+    ? "form__error_active"
+    : "form__error";
 
   const handleChange = (evt) => {
     const { name, value } = evt.target;
@@ -32,6 +42,7 @@ function RegisterModal({ onCloseModal, isOpen, handleRegistration }) {
       isOpen={isOpen}
       orButtonText="or Log In"
       handleSubmit={handleSubmit}
+      onModalRedirect={handleModalRedirect}
     >
       <fieldset className="form__fieldset">
         <label className="form__label form__label_type_text" htmlFor="email">
@@ -91,6 +102,7 @@ function RegisterModal({ onCloseModal, isOpen, handleRegistration }) {
           value={registerData.avatar}
           onChange={handleChange}
         ></input>
+        <div className={formErrorClassName}>This user already exists.</div>
       </fieldset>
     </ModalWithForm>
   );

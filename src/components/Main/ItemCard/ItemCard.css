@@ -44,10 +44,12 @@
   background: transparent url("../../../images/like-empty.svg") center no-repeat;
   border: none;
   margin-left: 10px;
+  transition: all 0.2s ease-in-out;
 }
 
 .card__like:hover {
   cursor: pointer;
+  transform: scale(1.2);
 }
 
 .card__like_active {
@@ -58,10 +60,12 @@
   background: transparent url("../../../images/like-full.svg") center no-repeat;
   border: none;
   margin-left: 10px;
+  transition: all 0.2s ease-in-out;
 }
 
 .card__like_active:hover {
   cursor: pointer;
+  transform: scale(1.2);
 }
 
 .hidden {

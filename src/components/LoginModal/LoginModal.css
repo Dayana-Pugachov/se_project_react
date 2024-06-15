@@ -1,0 +1,8 @@
+.form__error_active {
+  color: rgba(255, 77, 0, 1);
+  margin-bottom: 12px;
+}
+
+.form__error {
+  display: none;
+}

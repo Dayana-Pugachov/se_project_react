@@ -43,6 +43,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [isErrorActive, setIsErrorActive] = useState(false);
 
   const jwt = localStorage.getItem("jwt");
 
@@ -84,31 +85,48 @@ function App() {
   }
 
   function handleRegistartion({ email, password, name, avatar }) {
+    setIsLoading(true);
     register(email, password, name, avatar)
       .then((res) => {
         handleLogin({ email, password });
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error;
+        if (err.includes(409)) {
+          setIsErrorActive(true);
+        }
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleLogin({ email, password }) {
-    return authorize(email, password)
+    if (!email || !password) {
+      return;
+    }
+    setIsLoading(true);
+    authorize(email, password)
       .then((res) => {
         console.log(res);
         if (res.token) {
           localStorage.setItem("jwt", res.token);
           handleCloseModal();
 
-          getUserInfo(res.token)
-            .then((user) => {
-              setCurrentUser(user.data);
-              setIsLoggedIn(true);
-            })
-
-            .catch(console.error);
+          getUserInfo(res.token).then((user) => {
+            setCurrentUser(user.data);
+            setIsLoggedIn(true);
+            setIsErrorActive(false);
+          });
         }
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.error;
+        if (err.includes(400) || err.includes(401)) {
+          setIsErrorActive(true);
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function handleAddItemSubmit(inputValues) {
@@ -123,13 +141,15 @@ function App() {
   }
 
   function handleProfileEdit(data) {
+    setIsLoading(true);
     updateUserInfo(data, jwt)
       .then((user) => {
         currentUser.name = user.data.name;
         currentUser.avatar = user.data.avatar;
         handleCloseModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }
 
   function handleCardLike(cardId, isLiked) {
@@ -156,13 +176,27 @@ function App() {
   function handleLogOut() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
+    setCurrentUser({});
+  }
+
+  function handleAuthModalClose() {
+    handleCloseModal();
+    setIsErrorActive(false);
+  }
+
+  function handleModalRedirect() {
+    if (activeModal === "sign-up") {
+      setIsErrorActive(false);
+      setActiveModal("log-in");
+    } else {
+      setIsErrorActive(false);
+      setActiveModal("sign-up");
+    }
   }
 
   //USE EFFECTS
 
   useEffect(() => {
-    //const jwt = localStorage.getItem("jwt");
-
     if (!jwt) {
       console.log("No token");
       return;
@@ -221,13 +255,6 @@ function App() {
   }, []);
 
   //test
-  useEffect(() => {
-    console.log("Who's the current user", currentUser);
-  }, []);
-
-  useEffect(() => {
-    console.log("Am I logged in?", isLoggedIn);
-  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -297,14 +324,18 @@ function App() {
             handleDeleteItem={deleteSelectedCard}
           />
           <RegisterModal
-            onCloseModal={handleCloseModal}
+            onCloseModal={handleAuthModalClose}
             isOpen={activeModal === "sign-up"}
             handleRegistration={handleRegistartion}
+            isErrorActive={isErrorActive}
+            handleModalRedirect={handleModalRedirect}
           ></RegisterModal>
           <LoginModal
-            onCloseModal={handleCloseModal}
+            onCloseModal={handleAuthModalClose}
             isOpen={activeModal === "log-in"}
             handleLogin={handleLogin}
+            isErrorActive={isErrorActive}
+            handleModalRedirect={handleModalRedirect}
           ></LoginModal>
           <EditProfileModal
             onCloseModal={handleCloseModal}
