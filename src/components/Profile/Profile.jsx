@@ -16,6 +16,7 @@ function Profile({
       <SideBar
         handleEditProfileModalOpen={handleEditProfileModalOpen}
         handleLogOut={handleLogOut}
+        isLoggedIn={isLoggedIn}
       />
       <ClothesSection
         handleCardClick={handleCardClick}

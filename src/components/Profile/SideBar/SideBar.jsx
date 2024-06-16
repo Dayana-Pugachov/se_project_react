@@ -3,12 +3,21 @@ import avatar from "../../../images/avatar.svg";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
-function SideBar({ handleEditProfileModalOpen, handleLogOut }) {
+function SideBar({ handleEditProfileModalOpen, handleLogOut, isLoggedIn }) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
     <section className="side-bar">
       <div className="side-bar__user-data">
+        <div
+          className={
+            isLoggedIn && !currentUser.avatar
+              ? "user-data__avatar-placeholder"
+              : "hidden"
+          }
+        >
+          {currentUser.name[0]}
+        </div>
         <img
           alt="User avatar"
           src={currentUser.avatar}

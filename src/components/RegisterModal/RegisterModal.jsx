@@ -99,6 +99,7 @@ function RegisterModal({
           name="avatar"
           placeholder="Avatar URL"
           type="url"
+          required
           value={registerData.avatar}
           onChange={handleChange}
         ></input>

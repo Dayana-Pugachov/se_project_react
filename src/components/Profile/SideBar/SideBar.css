@@ -12,6 +12,19 @@
   border-radius: 56px;
 }
 
+.user-data__avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border: solid 2px #7e7e7e;
+  border-radius: 20px;
+  background-color: white;
+  font-family: "Cabinet Grotesk", arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #7e7e7e;
+  margin-left: 12px;
+}
+
 .user-data__name {
   margin: 0;
   font-size: 20px;

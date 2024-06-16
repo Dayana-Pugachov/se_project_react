@@ -68,6 +68,7 @@ function EditProfileModal({ onCloseModal, isOpen, handleProfileEdit }) {
           name="avatar"
           placeholder="Avatar URL"
           type="url"
+          required
           value={profileData.avatar}
           onChange={handleChange}
         ></input>

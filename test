@@ -1,6 +1,0 @@
-<RegisterModal
-          onCloseModal={handleCloseModal}
-          isOpen={activeModal === "sign-up"}
-        ></RegisterModal>
-
-        currentUser.name.charAt(0) - for avatar placeholder
