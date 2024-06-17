@@ -68,7 +68,7 @@ function Header({
                 : "hidden"
             }
           >
-            {currentUser.name[0]}
+            {currentUser.name?.[0]}
           </button>
         </Link>
         <Link to="/profile">

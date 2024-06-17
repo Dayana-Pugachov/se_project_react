@@ -16,7 +16,7 @@ function SideBar({ handleEditProfileModalOpen, handleLogOut, isLoggedIn }) {
               : "hidden"
           }
         >
-          {currentUser.name[0]}
+          {currentUser.name?.[0]}
         </div>
         <img
           alt="User avatar"
