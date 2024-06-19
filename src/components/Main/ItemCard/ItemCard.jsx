@@ -8,7 +8,6 @@ function ItemCard({ item, handleCardClick, isLoggedIn, onCardLike }) {
   const itemLikeButtonClassName = isLiked ? "card__like_active" : "card__like";
 
   function handleLike() {
-    debugger;
     onCardLike(item._id, isLiked);
   }
 

@@ -8,8 +8,8 @@ function ModalWithForm({
   onCloseModal,
   isOpen,
   handleSubmit,
-  orButtonText,
   onModalRedirect,
+  orButtonText,
 }) {
   return (
     <div className={`modal modal_type_${name} ${isOpen ? "modal_opened" : ""}`}>
@@ -30,7 +30,7 @@ function ModalWithForm({
             <button
               type="button"
               className={`${
-                name === "sign-up" || "log-in" ? "button_visible" : ""
+                orButtonText ? "button_visible" : ""
               } form__or-button`}
               onClick={onModalRedirect}
             >

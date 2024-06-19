@@ -39,12 +39,12 @@ function AddItemModal({ onCloseModal, isOpen, onAddItem, isLoading }) {
       handleSubmit={handleSubmit}
     >
       <fieldset className="form__fieldset">
-        <label className="form__label form__label_type_text" htmlFor="name">
+        <label className="form__label form__label_type_text" htmlFor="itemName">
           Name
         </label>
         <input
           className="form__input"
-          id="name"
+          id="itemName"
           name="name"
           placeholder="Name"
           type="text"
@@ -61,7 +61,7 @@ function AddItemModal({ onCloseModal, isOpen, onAddItem, isLoading }) {
         <input
           className="form__input"
           id="url"
-          name="url" //see the difference
+          name="url"
           placeholder="Image URL"
           type="url"
           required

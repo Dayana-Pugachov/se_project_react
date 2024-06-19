@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./LoginModal.css";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
@@ -38,17 +38,20 @@ function LoginModal({
       buttonText="Log In"
       onCloseModal={onCloseModal}
       isOpen={isOpen}
-      orButtonText="or Sign Up"
       handleSubmit={handleSubmit}
       onModalRedirect={handleModalRedirect}
+      orButtonText="or Sign Up"
     >
       <fieldset className="form__fieldset">
-        <label className="form__label form__label_type_text" htmlFor="email">
+        <label
+          className="form__label form__label_type_text"
+          htmlFor="loginEmail"
+        >
           Email*
         </label>
         <input
           className="form__input"
-          id="email"
+          id="loginEmail"
           name="email"
           placeholder="Email"
           type="email"
@@ -57,12 +60,15 @@ function LoginModal({
           onChange={handleChange}
         ></input>
 
-        <label className="form__label form__label_type_text" htmlFor="password">
+        <label
+          className="form__label form__label_type_text"
+          htmlFor="loginPassword"
+        >
           Password*
         </label>
         <input
           className="form__input"
-          id="password"
+          id="loginPassword"
           name="password"
           placeholder="Password"
           type="password"

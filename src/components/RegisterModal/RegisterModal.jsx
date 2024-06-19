@@ -40,17 +40,20 @@ function RegisterModal({
       buttonText="Sign Up"
       onCloseModal={onCloseModal}
       isOpen={isOpen}
-      orButtonText="or Log In"
       handleSubmit={handleSubmit}
       onModalRedirect={handleModalRedirect}
+      orButtonText="or Log In"
     >
       <fieldset className="form__fieldset">
-        <label className="form__label form__label_type_text" htmlFor="email">
+        <label
+          className="form__label form__label_type_text"
+          htmlFor="registerEmail"
+        >
           Email*
         </label>
         <input
           className="form__input"
-          id="email"
+          id="registerEmail"
           name="email"
           placeholder="Email"
           type="email"
@@ -59,12 +62,15 @@ function RegisterModal({
           onChange={handleChange}
         ></input>
 
-        <label className="form__label form__label_type_text" htmlFor="password">
+        <label
+          className="form__label form__label_type_text"
+          htmlFor="registerPassword"
+        >
           Password*
         </label>
         <input
           className="form__input"
-          id="password"
+          id="registerPassword"
           name="password"
           placeholder="Password"
           type="password"
@@ -74,12 +80,15 @@ function RegisterModal({
           onChange={handleChange}
         ></input>
 
-        <label className="form__label form__label_type_text" htmlFor="name">
+        <label
+          className="form__label form__label_type_text"
+          htmlFor="registerName"
+        >
           Name*
         </label>
         <input
           className="form__input"
-          id="name"
+          id="registerName"
           name="name"
           placeholder="Name"
           type="text"
@@ -90,12 +99,15 @@ function RegisterModal({
           onChange={handleChange}
         ></input>
 
-        <label className="form__label form__label_type_text" htmlFor="avatar">
+        <label
+          className="form__label form__label_type_text"
+          htmlFor="registerAvatar"
+        >
           Avatar URL*
         </label>
         <input
           className="form__input"
-          id="avatar"
+          id="registerAvatar"
           name="avatar"
           placeholder="Avatar URL"
           type="url"
