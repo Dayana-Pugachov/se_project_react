@@ -144,7 +144,12 @@ function App() {
     setIsLoading(true);
     updateUserInfo(data, jwt)
       .then((user) => {
-        setCurrentUser({ name: user.data.name, avatar: user.data.avatar });
+        setCurrentUser((userData) => {
+          return {
+            ...userData,
+            ...user.data,
+          };
+        });
         handleCloseModal();
       })
       .catch(console.error)
