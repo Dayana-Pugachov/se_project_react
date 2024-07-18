@@ -92,6 +92,7 @@ function App() {
       })
       .catch((err) => {
         console.error;
+        console.log(err);
         if (err.includes(409)) {
           setIsErrorActive(true);
         }

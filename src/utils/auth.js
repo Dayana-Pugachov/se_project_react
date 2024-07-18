@@ -1,6 +1,10 @@
 import { checkResponse } from "./api";
 
-const baseUrl = "http://localhost:3001";
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.pugachovwtwr.jumpingcrab.com"
+    : "http://localhost:3001";
+
 const headers = {
   Accept: "application/json",
   "Content-Type": "application/json",
